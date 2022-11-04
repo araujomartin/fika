@@ -1,0 +1,10 @@
+#include ("templates/encabezado.html")
+<body>
+    #include ("templates/navbar.html")
+    #include ("templates/home.html")
+    #parse( $template )
+</body>
+#include("templates/pie.html")
+
+
+ 

@@ -1,0 +1,138 @@
+<section id="menu" class="menu">
+    <div class="container pt-4">
+        <div class="menu-title shadow p-1">
+            <h1 class="text-center"> Productos </h1>
+        </div>
+        <div class="row">
+        #foreach($producto in $productos)
+            <div class="mt-2 col-sm-3" >
+                <div class="card" data-bs-toggle="modal" data-bs-target="#productModal${foreach.index}">
+                    <img class="img-fluid product-image" src="images/$producto.getFoto()" alt="$producto.getNombre()">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card-title">
+                                     $producto.getCategoria()
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                $producto.getNombre()
+                            </div>
+                        </div>
+                        <div id="card-detail" class="my-2 row">
+                            <div class="col">
+                                <div class="contador">
+                                    <span class="resta">-</span>
+                                    <span id="cantidad$producto.getId()" class="cantidad">1</span>
+                                    <span class="suma">+</span>
+                                </div>
+                            </div>
+                            <div class="price d-flex align-self-center justify-content-end col">
+                                $producto.getPrecio_vta()
+                            </div>
+                        </div>
+                        <div role="product-detail" class="row my-2">
+                            <p class="col">
+                             $producto.getDescripcion_producto()
+                            </p>
+                        </div>
+                        <div class="my-2 row">
+                            <div class="col">
+                                Volumen: <small>250ml</small> 
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="text-center col">
+                                <button class="font-weight-bold w-100 btn btn-coffe carrito" onclick="agregarCarrito( $producto.getId() )">
+                                    Agregar al carrito
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="productModal${foreach.index}" tabindex="-1" role="dialog" aria-labelledby="productModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen-xl-down" role="document">
+        <div class="modal-content">
+            <div class="modal-body p-0">
+                    <span class="cerrar" data-bs-dismiss="modal">x</span>
+                    <img class="img-fluid product-image" src="images/$producto.getFoto()" alt="$producto.getNombre()">
+                    <div class="card-body p-3" style="color:white">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card-title">
+                                     $producto.getCategoria()
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                $producto.getNombre()
+                            </div>
+                        </div>
+                        <div id="card-detail" class="my-2 row">
+                            <div class="col">
+                                <div class="contador">
+                                    <span class="resta">-</span>
+                                    <span class="cantidad">1</span>
+                                    <span class="suma">+</span>
+                                </div>
+                            </div>
+                            <div class="price d-flex align-self-center justify-content-end col">
+                                $producto.getPrecio_vta()
+                            </div>
+                        </div>
+                        <div role="product-detail" class="row my-2">
+                            <p class="col">
+                             $producto.getDescripcion_producto()
+                            </p>
+                        </div>
+                        <div class="my-2 row">
+                            <div class="col">
+                                Volumen: <small>250ml</small> 
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="text-center col">
+                                <button class="font-weight-bold w-100 btn btn-coffe carrito">
+                                    Agregar al carrito
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+        #end
+        </div>
+    </div>
+</section>
+<script> 
+$(document).ready(() => {
+    let resta = document.getElementsByClassName('resta');
+    let suma = document.getElementsByClassName('suma');
+
+    for (let i = 0; i < resta.length; i++ ) {
+        let boton_resta = resta[i];
+        let boton_suma = suma[i];
+
+        boton_resta.addEventListener('click', (e)=> {
+            let boton_resta_clickeado = event.target;
+            let contador = boton_resta_clickeado.parentElement.children[1];
+            if (contador.innerHTML>1) {
+                contador.innerHTML--;
+            }
+        });
+
+        boton_suma.addEventListener('click', (e)=> {
+            let boton_suma_clickeado = event.target;
+            let contador = boton_suma_clickeado.parentElement.children[1];
+                contador.innerHTML++;
+        });
+        
+    }
+       });
+</script>

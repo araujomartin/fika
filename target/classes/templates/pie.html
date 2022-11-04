@@ -1,0 +1,33 @@
+
+<script>
+    $(document).ready(() => {
+        let carrito_cantidad = document.getElementById('cantidad_carrito');
+
+        const carrito_storage = localStorage.getItem('cantidad_productos');
+        if (carrito_storage) {
+            let cantidad_carrito = document.getElementById('cantidad_carrito');
+            cantidad_carrito.innerHTML = localStorage.getItem('cantidad_productos');
+        } else {
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:4567/carrito',
+                dataType: "json",
+                success: (result, status) => {
+                    cantidad_carrito.innerHTML = result.cantidad_productos;
+                    localStorage.setItem('cantidad_productos', result.cantidad_productos);
+                    localStorage.setItem('productos', result.listaCarrito);
+                },
+                error: (xhr, status, err) => {
+
+                }
+            });
+        }
+
+
+    });
+</script>
+<footer>
+</footer>
+</body>
+
+</html>

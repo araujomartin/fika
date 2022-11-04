@@ -1,0 +1,27 @@
+<section id="carrito" class="carrito">
+    <div class="container pt-4">
+        <div class="menu-title shadow p-1">
+            <h1 class="text-center"> Carrito </h1>
+        </div>
+        #foreach($item in $itemCarrito)
+        <div class="row detalle my-2">
+            <div class="col-md-3">
+                <img class="img-fluid p-2" src="http://localhost/images/$item.getProducto().getFoto()" alt="" width="80">
+            </div>
+            <div class="align-self-center col-md fs-2">
+                $item.getProducto().getNombre()
+            </div>
+            <div class="align-self-center col-md-2">
+                <div class="contador">
+                    <span class="resta">-</span>
+                    <span class="cantidad">1</span>
+                    <span class="suma">+</span>
+                </div>
+            </div>
+            <div class="align-self-center text-end col-md fs-2">
+                $item.getProducto().getPrecio_vta()
+            </div>
+        </div>
+        #end
+    </div>
+</section>

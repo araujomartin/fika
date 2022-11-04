@@ -53,7 +53,6 @@ public class ProductoDAO {
         catch(Exception e) {
             System.out.println(e);}
         
-
         return productos;
     }
     

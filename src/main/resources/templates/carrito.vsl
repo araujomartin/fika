@@ -6,7 +6,7 @@
         #foreach($item in $itemCarrito)
         <div class="row detalle my-2">
             <div class="col-md-3">
-                <img class="img-fluid p-2" src="http://localhost/images/$item.getProducto().getFoto()" alt="" width="80">
+                <img class="img-fluid p-2" src="images/$item.getProducto().getFoto()" alt="" width="80">
             </div>
             <div class="align-self-center col-md fs-2">
                 $item.getProducto().getNombre()

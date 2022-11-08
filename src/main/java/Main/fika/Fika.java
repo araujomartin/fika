@@ -23,7 +23,6 @@ public class Fika {
         get("/", FikaController.inicio);
         get("/productos", ProductoControlador.productos);
         get("/carrito", CarritoControlador.carrito);
-        get("/carrito/detalle", CarritoControlador.init);
         put("/carrito", CarritoControlador.agregar);
         get("/reserva",MesaControlador.getMesas); 
         post("/insertarres",ReservaControlador.setReserva); 

@@ -18,9 +18,8 @@ import spark.Route;
 public class FikaController {
     public static Route inicio = (Request req, Response res)-> {
         HashMap model = new HashMap();
-        Carrito carrito = new Carrito();
-        model.put("carrito", carrito);
-        model.put("navbar", "templates/navbar.vsl");
+
+        model.put("template", "templates/home.vsl");
         return new VelocityTemplateEngine().render(new ModelAndView(model, "templates/layout.vsl"));
     };
     

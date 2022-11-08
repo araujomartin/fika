@@ -24,7 +24,6 @@ import spark.Route;
 public class ReservaControlador {
     
     public static Route setReserva = (Request request, Response response) -> {
-        System.out.println("aca llegue");
          
         Reserva reserva = new Reserva();
         ReservaDAO rDAO = new ReservaDAO();

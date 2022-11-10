@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2022 at 03:27 PM
+-- Generation Time: Nov 10, 2022 at 02:16 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -42,6 +42,19 @@ INSERT INTO `mesa` (`nro_mesa`, `cant_sillas`, `fecha_disponible`) VALUES
 (2, 2, '2022-11-19'),
 (3, 4, '2022-11-02'),
 (4, 5, '2022-10-19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pedidos`
+--
+
+CREATE TABLE `pedidos` (
+  `id_usuario` int(11) NOT NULL,
+  `nro_pedido` int(11) NOT NULL,
+  `fecha_pedido` date DEFAULT NULL,
+  `hora_pedido` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -101,6 +114,12 @@ INSERT INTO `reserva` (`nro_reserva`, `fecha_reserva`, `estado`) VALUES
 --
 ALTER TABLE `mesa`
   ADD PRIMARY KEY (`nro_mesa`);
+
+--
+-- Indexes for table `pedidos`
+--
+ALTER TABLE `pedidos`
+  ADD PRIMARY KEY (`nro_pedido`);
 
 --
 -- Indexes for table `productos`

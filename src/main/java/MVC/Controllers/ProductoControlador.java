@@ -33,4 +33,13 @@ public class ProductoControlador {
              
     };
     
+    public static Route detalle = (Request request, Response response) -> {
+        String id = request.queryParams("id");
+        ProductoDAO bd = new ProductoDAO();
+        HashMap model = new HashMap();
+        List<Producto> prod = bd.obtenerProductoId(Integer.parseInt(id));
+        model.put("producto", prod.get(0));
+        return new VelocityTemplateEngine().render(new ModelAndView(model, "templates/modal-producto.vsl"));
+};
+    
 }

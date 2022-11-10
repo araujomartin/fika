@@ -40,6 +40,7 @@ public class CarritoControlador {
         }
                 
         model.put("template", "templates/carrito.vsl");
+        model.put("total", c.calcularTotal());
         model.put("itemCarrito", c.getListaCarrito());
         return new VelocityTemplateEngine().render(new ModelAndView(model, "templates/layout.vsl"));
     };

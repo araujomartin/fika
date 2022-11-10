@@ -21,7 +21,9 @@ public class Fika {
     public static void main(String[] args) {
         staticFiles.location("/assets");
         get("/", FikaController.inicio);
+        get("/login", FikaController.login);
         get("/productos", ProductoControlador.productos);
+        get("producto/detalle", ProductoControlador.detalle);
         get("/carrito", CarritoControlador.carrito);
         put("/carrito", CarritoControlador.agregar);
         get("/reserva",MesaControlador.getMesas); 

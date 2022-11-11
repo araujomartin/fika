@@ -1,12 +1,11 @@
 
-    <div class="modal-dialog modal-dialog modal-lg modal-sm-down mt-3">
-            <div class="menu-title shadow p-1">
-                <h1 class="text-center text-white"> Reservar Mesa </h1>
-            </div>
-        <div class="modal-content col-auto ">
-            <div class="card mb-3 ">
-                <img src="http://localhost/images/local3.png" class="card-img-top img-fluid rounded" alt="imagen fika cafe">
-                <div class="card-body ">
+<section id="reserva" class="reserva" style="background: url(images/productos.jpeg);">
+    <div class="container pt-4">
+            <h1 class="pretty font-weight-bold text-center fs-1"> Reserva </h1>
+        <div class="row justify-content-center">
+            <div class="mt-2 col-md-4">
+                <div class="card">
+                    <div class="card-body">
                     <form name="formulario" class="form-row text-center" method="POST" action="http://localhost:4567/insertarres" >
                         <div class="form-group ">
                             <label for="fecha_reserva">Ingrese fecha </label>
@@ -24,11 +23,13 @@
                             <label for="nombre">Ingrese su nombre y apellido</label>
                             <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Jane Doe" required>
                         </div>
-                        <button type="Submit" class="font-weight-bold w-100 btn btn-coffe carrito mb-2">
+                        <button type="Submit" class="mt-1 font-weight-bold w-100 btn btn-light-coffe carrito mb-2">
                             Confirmar Reserva
                         </button>
                     </form>
+                    </div>
                 </div>
-              </div>
+            </div>
         </div>
     </div>
+</section>

@@ -23,4 +23,11 @@ public class FikaController {
         return new VelocityTemplateEngine().render(new ModelAndView(model, "templates/layout.vsl"));
     };
     
+    public static Route login = (Request req, Response res)-> {
+        HashMap model = new HashMap();
+
+        model.put("template", "templates/login.vsl");
+        return new VelocityTemplateEngine().render(new ModelAndView(model, "templates/layout.vsl"));
+    };
+    
 }

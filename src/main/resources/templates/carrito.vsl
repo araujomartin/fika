@@ -1,27 +1,27 @@
-<section id="carrito" class="carrito">
+<section id="carrito" class="carrito" style="background: url(images/productos.jpeg);">
     <div class="container pt-4">
-        <div class="menu-title shadow p-1">
-            <h1 class="text-center"> Carrito </h1>
-        </div>
+        <h1 class="pretty font-weight-bold text-center fs-1"> Carrito </h1>
         #foreach($item in $itemCarrito)
-        <div class="row detalle my-2">
-            <div class="col-md-3">
+        <div class="row detalle my-2 cursor-pointer">
+            <div class="col col-md-3">
                 <img class="img-fluid p-2" src="images/$item.getProducto().getFoto()" alt="" width="80">
             </div>
-            <div class="align-self-center col-md fs-2">
+            <div class="align-self-center col col-md fs-2">
                 $item.getProducto().getNombre()
             </div>
-            <div class="align-self-center col-md-2">
-                <div class="contador">
-                    <span class="resta">-</span>
-                    <span class="cantidad">1</span>
-                    <span class="suma">+</span>
-                </div>
+            <div class="align-self-center col col-md-2 text-center cantidad-item">
+                $item.getCantidad()
             </div>
-            <div class="align-self-center text-end col-md fs-2">
-                $item.getProducto().getPrecio_vta()
+            <div class="align-self-center text-end col col-md fs-2">
+                $item.getTotal()
             </div>
         </div>
         #end
+        <div class="row justify-content-between my-2">
+            <div class="fs-1 detalle text-center col-md-4">
+                Total:   $total
+            </div>
+            <button class="col-md-3 mt-2 mt-md-0 btn btn-dark-coffe"> Finalizar Pedido </button>
+        </div>
     </div>
 </section>

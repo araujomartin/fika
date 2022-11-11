@@ -26,4 +26,8 @@ public class ItemCarrito{
         this.cantidad = this.cantidad + cantidad;
     }
     
+    public double getTotal() {
+        return this.cantidad * this.producto.getPrecio_vta();
+    }
+    
 }

@@ -58,11 +58,11 @@ html::-webkit-scrollbar {
 }
 
 html::-webkit-scrollbar-track {
-    background-color: #e6c9e3;
+    background-color: var(--pink);
 }
 
 html::-webkit-scrollbar-thumb {
-    background-color: var(--pink);
+    background-color: #e6c9e3;
 }
 
 *>img {
@@ -106,7 +106,7 @@ header img {
     font-size: 1.3rem;
 }
 
-section#home {
+section#home, section#menu, section#carrito, section#reserva {
     display: flex;
     padding: 0;
     width: 100%;
@@ -125,6 +125,7 @@ section#home {
 p.pretty{
     font-size: 25px;
 }
+
 
 .cerrar {
     transition: all 0.5s ease;
@@ -165,31 +166,48 @@ p.pretty{
     border-radius: 10px;
 }
 
+.title {
+    color: var(--coffe-light);
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.price {
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
 .menu .card .card-body :first-letter {
     text-transform: capitalize;
-}
-
-.menu .row .card-body .card-title {
-    font-size: 1rem;
-    font-weight: 600;
-    text-transform: capitalize;
-}
-
-.menu .card-body .price {
-    font-size: 1.2rem;
-    color: var(--coffe-light);
 }
 
 .cursor-pointer {
     cursor: pointer;
 }
 
-.btn-coffe {
+.btn-pink {
+    color: white !important;
+    background-color: var(--pink) !important;
+}
+
+.btn-light-coffe {
     color: white !important;
     background-color: var(--coffe-light) !important;
 }
 
-.btn-coffe:hover {
+.btn-dark-coffe {
+    color: white !important;
+    background-color: var(--coffe-dark) !important;
+}
+
+.btn-dark-coffe:hover {
+    transition: all 0.4s ease;
+    color: white !important;
+    background-color: var(--coffe-light) !important;
+}
+
+.btn-light-coffe:hover {
     transition: all 0.4s ease;
     color: white !important;
     background-color: var(--coffe-dark) !important;
@@ -228,8 +246,15 @@ p.pretty{
 }
 
 .detalle {
-    background-color: var(--coffe-medium);
+    background-image: linear-gradient(to top, #90603C 0%, #dfa579 100%);
     border-radius: 0.375rem;
+}
+
+.cantidad-item{
+    width: auto;
+    background: var(--coffe-light);
+    border-radius: 10px;
+    padding: 10px 20px
 }
 
 /* Notebooks */
@@ -244,6 +269,14 @@ p.pretty{
         height: 3.5rem;
         padding: 2px;
         border-radius: 50%;
+    }
+
+    .title {
+        font-size: 1.1rem;
+    }
+    
+    .price {
+        font-size: 0.8rem;
     }
 
     .brand-name {

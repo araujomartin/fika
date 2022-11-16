@@ -17,7 +17,7 @@ import org.sql2o.Sql2o;
  */
 public class PedidoDAO {
      private List<Pedido> pedidos;
-    
+
     public void cargarPedido(Pedido pedido){
             Sql2o bd;
         bd = getSql2o();
@@ -33,21 +33,23 @@ public class PedidoDAO {
             System.out.println(e);}
     }
     
-    public void verPedidos(){
+    public List <Pedido> verPedidos(){
                     Sql2o bd;
         bd = getSql2o();
         
         try (Connection con = bd.open()) {
            
             String sql = "SELECT * FROM pedidos";
-            con.createQuery(sql)
-                .bind(pedidos)
-                .executeUpdate();
+            pedidos = con
+                .createQuery(sql)
+                .executeAndFetch(Pedido.class);
         }
         catch(Exception e) {
             System.out.println(e);}
+      return pedidos;
     }
+      
         
  }
-    
 
+       

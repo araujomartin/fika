@@ -7,6 +7,7 @@ package Main.fika;
 
 import MVC.Controllers.CarritoControlador;
 import MVC.Controllers.MesaControlador;
+import MVC.Controllers.PedidoControlador;
 import MVC.Controllers.ProductoControlador;
 import MVC.Controllers.ReservaControlador;
 import com.google.gson.Gson;
@@ -27,6 +28,7 @@ public class Fika {
         get("/carrito", CarritoControlador.carrito);
         put("/carrito", CarritoControlador.agregar);
         get("/reserva",MesaControlador.getMesas); 
+        get("/pedidos",PedidoControlador.seepedidos);
         post("/insertarres",ReservaControlador.setReserva); 
     }
 }

@@ -35,11 +35,11 @@ public class PedidoControlador {
         public static Route seepedidos = (Request request, Response response) -> {
         
         PedidoDAO bd = new  PedidoDAO();
-        //List<Pedido> seepedis = bd.verPedidos();
+        List<Pedido> seepedis = bd.verPedidos();
 
         HashMap model = new HashMap();
-        //model.put("template", "templates/productos.vsl");  // .vsl donde se va a mostrar 
-        //model.put("seepedidos", seepedis);
+        model.put("template", "templates/verPedidos.vsl");  // .vsl donde se va a mostrar 
+        model.put("pedis", seepedis);
         return new VelocityTemplateEngine().render(new ModelAndView(model, "templates/layout.vsl"));
              
     };

@@ -1,9 +1,0 @@
-<section id="verPedidos" class="verPedidos" style="background: url(images/productos.jpeg);">
-        <p>Los pedidos actuales son: </p><br>
-         #foreach($Pedido in $pedis)
-       <div>
-       USUARIO: $Pedido.getId_usuario() PEDIDO:$Pedido.getNro_pedido() A LAS $Pedido.getHora_pedido() EL $Pedido.getFecha_pedido()
-   
-        </div>
-        #end
-    </section>

@@ -1,6 +1,0 @@
-#include ("templates/encabezado.html")
-<body>
-    #include ("templates/navbar.html")
-    #parse( $template )
-</body>
-#include("templates/pie.html")

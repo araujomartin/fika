@@ -32,15 +32,14 @@ public class PedidoControlador {
              
     };
         
-        public static Route seepedidos = (Request request, Response response) -> {
-        
-        PedidoDAO bd = new  PedidoDAO();
-        List<Pedido> seepedis = bd.verPedidos();
-
+        public static Route viewPedidos = (Request request, Response response) -> {
         HashMap model = new HashMap();
+        PedidoDAO bd = new  PedidoDAO();
+        List<Pedido> pedidos = bd.verPedidos();
+        
         model.put("template", "templates/verPedidos.vsl");  // .vsl donde se va a mostrar 
-        model.put("pedis", seepedis);
-        return new VelocityTemplateEngine().render(new ModelAndView(model, "templates/layout.vsl"));
+        model.put("pedidos", pedidos);
+        return new VelocityTemplateEngine().render(new ModelAndView(model, "templates/layout_backoffice.vsl"));
              
     };
         

@@ -27,8 +27,8 @@ public class Fika {
         get("producto/detalle", ProductoControlador.detalle);
         get("/carrito", CarritoControlador.carrito);
         put("/carrito", CarritoControlador.agregar);
-        get("/reserva",MesaControlador.getMesas); 
-        get("/pedidos",PedidoControlador.seepedidos);
+        get("/reserva",MesaControlador.getMesas);
+        get("/admin/pedidos",PedidoControlador.viewPedidos);
         post("/insertarres",ReservaControlador.setReserva); 
     }
 }

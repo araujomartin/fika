@@ -14,5 +14,4 @@ public class Pedido {
     private int nro_pedido;
     private String fecha_pedido;
     private String hora_pedido;
-    
 }

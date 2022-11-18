@@ -37,9 +37,84 @@ function hola(id) {
     });
 }
 
+function getCarritoId(user_id) {
+            $.ajax({
+        type: 'GET',
+        url: 'carrito/detalle?user_id='+user_id,
+        success: (result, status) => {
+            let element = JSON.parse(result);
+            let carrito_id = element.id_carrito;
+            
+        },
+        error: (xhr, status, err) => {
+
+        }
+    });
+    
+    return carrito_id;
+}
+
+
+function finalizarPedido(user_id){
+    
+    const pago_id = $('#pago').val();
+    const fecha = $('#fecha').val();
+    const hora = $('#hora').val();
+    
+    $.ajax({
+        type: 'POST',
+        url: 'pedido/finalizar',
+        data: { user_id: user_id, pago_id: pago_id, fecha: fecha, hora: hora},
+        success: (result, status) => {
+  
+        },
+        error: (xhr, status, err) => {
+
+        }
+    });
+}
+
+function searchItem(id_carrito, producto_id, cant){
+        let find = false;
+        $.ajax({
+        type: 'GET',
+        url: 'carrito/items?carrito_id='+id_carrito,
+        success: (result, status) => {
+            let array = JSON.parse(result);
+            array.forEach(element => {
+			if(element.id_producto === producto_id) {
+                            cant = cant + Number(element.cantidad);
+                            $.post('carrito/items/actualizar?carrito_id='+id_carrito+'&producto_id='+producto_id+'&cantidad='+cant);
+                            find = true;
+                        }
+		});
+                if (!find){
+                    $.post('carrito/items/agregar?carrito_id='+id_carrito+'&producto_id='+producto_id+'&cantidad='+cant);
+                }
+        },
+        error: (xhr, status, err) => {
+
+        }
+    });
+}
+
 function agregarCarrito(producto_id) {
-    let cant = document.getElementById('cantidad').innerHTML;
-    let new_item = { id: producto_id, cantidad: Number(cant) }
+    // Este valor depende del login //
+    let user_id = 0;
+    let cant = Number(document.getElementById('cantidad').innerHTML);
+    
+    $.ajax({
+        type: 'GET',
+        url: 'carrito/detalle?user_id='+user_id,
+        success: (result, status) => {
+            let element = JSON.parse(result);
+            searchItem(element.id_carrito, producto_id, cant);
+        },
+        error: (xhr, status, err) => {
+
+        }
+    });
+    /* let new_item = { id: producto_id, cantidad: Number(cant) }
 
     let item = JSON.parse(localStorage.getItem('item'));
     let find = false;
@@ -62,4 +137,5 @@ function agregarCarrito(producto_id) {
     document.cookie = "item=" + JSON.stringify(item);
     $('#modal-producto').modal('hide');
     $(location).prop('href', '/carrito')
+     */
 }

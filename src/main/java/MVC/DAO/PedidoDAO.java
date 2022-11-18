@@ -24,9 +24,9 @@ public class PedidoDAO {
         
         try (Connection con = bd.open()) {
            
-            String sql = "INSERT INTO pedidos VALUES(:id_usuario, :nro_pedido, :fecha_pedido, :hora_pedido)";
+            String sql = "INSERT INTO pedidos VALUES(:nro_pedido, :id_estado, :id_usuario , :fecha_pedido, :hora_pedido)";
             con.createQuery(sql)
-                .bind(pedidos)
+                .bind(pedido)
                 .executeUpdate();
         }
         catch(Exception e) {

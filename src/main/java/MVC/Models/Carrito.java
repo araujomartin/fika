@@ -14,8 +14,10 @@ import java.util.List;
 
 @Data
 public class Carrito{
-    
-    List<ItemCarrito> listaCarrito;
+    private int id_usuario;
+    private int id_carrito;
+
+    /*List<ItemCarrito> listaCarrito;
     int cantidad_productos = 0;
     
     public Carrito() {
@@ -57,5 +59,5 @@ public class Carrito{
         
         return total;
     }
-    
+   */ 
 }

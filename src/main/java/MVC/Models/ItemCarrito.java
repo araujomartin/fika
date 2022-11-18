@@ -4,7 +4,6 @@
  */
 package MVC.Models;
 
-import MVC.Models.Producto;
 import lombok.Data;
 
 /**
@@ -13,21 +12,7 @@ import lombok.Data;
  */
 @Data
 public class ItemCarrito{
-    
+    private int id_producto;
+    private int id_carrito;
     private int cantidad;
-    private Producto producto;
-    
-    public ItemCarrito(Producto p, int cant){
-        this.producto=p;
-        this.cantidad=cant;
-    }
-        
-    public void actualizarCantidad(int cantidad) {
-        this.cantidad = this.cantidad + cantidad;
-    }
-    
-    public double getTotal() {
-        return this.cantidad * this.producto.getPrecio_vta();
-    }
-    
 }

@@ -56,6 +56,7 @@ function getCarritoId(user_id) {
 
 
 function finalizarPedido(user_id){
+
     
     const pago_id = $('#pago').val();
     const fecha = $('#fecha').val();
@@ -66,7 +67,7 @@ function finalizarPedido(user_id){
         url: 'pedido/finalizar',
         data: { user_id: user_id, pago_id: pago_id, fecha: fecha, hora: hora},
         success: (result, status) => {
-  
+            window.location.reload();
         },
         error: (xhr, status, err) => {
 
@@ -91,6 +92,7 @@ function searchItem(id_carrito, producto_id, cant){
                 if (!find){
                     $.post('carrito/items/agregar?carrito_id='+id_carrito+'&producto_id='+producto_id+'&cantidad='+cant);
                 }
+                window.location.href = "http://localhost:4567/carrito?user_id=0";
         },
         error: (xhr, status, err) => {
 

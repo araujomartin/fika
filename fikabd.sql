@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 10, 2022 at 02:16 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 22-11-2022 a las 22:40:51
+-- Versión del servidor: 10.4.25-MariaDB
+-- Versión de PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,104 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `fikabd`
+-- Base de datos: `fikabd`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mesa`
+-- Estructura de tabla para la tabla `carrito`
+--
+
+CREATE TABLE `carrito` (
+  `id_carrito` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `carrito`
+--
+
+INSERT INTO `carrito` (`id_carrito`, `id_usuario`) VALUES
+(1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `detallepedido`
+--
+
+CREATE TABLE `detallepedido` (
+  `nro_pedido` int(11) NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `cantidad_producto` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `detallepedido`
+--
+
+INSERT INTO `detallepedido` (`nro_pedido`, `id_producto`, `cantidad_producto`) VALUES
+(1000, 2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estados_pedido`
+--
+
+CREATE TABLE `estados_pedido` (
+  `id_estado` int(11) DEFAULT NULL,
+  `descripcion` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `estados_pedido`
+--
+
+INSERT INTO `estados_pedido` (`id_estado`, `descripcion`) VALUES
+(1, 'en preparacion'),
+(2, 'rechazado'),
+(3, 'preparado'),
+(3, 'entregado'),
+(5, 'pendiente');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `itemcarrito`
+--
+
+CREATE TABLE `itemcarrito` (
+  `id_carrito` int(11) NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `medios_pagos`
+--
+
+CREATE TABLE `medios_pagos` (
+  `id_metodo` int(11) DEFAULT NULL,
+  `descripcion` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `medios_pagos`
+--
+
+INSERT INTO `medios_pagos` (`id_metodo`, `descripcion`) VALUES
+(1, 'mercadopago'),
+(2, 'credito'),
+(3, 'debito');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mesa`
 --
 
 CREATE TABLE `mesa` (
@@ -34,7 +125,7 @@ CREATE TABLE `mesa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `mesa`
+-- Volcado de datos para la tabla `mesa`
 --
 
 INSERT INTO `mesa` (`nro_mesa`, `cant_sillas`, `fecha_disponible`) VALUES
@@ -46,20 +137,29 @@ INSERT INTO `mesa` (`nro_mesa`, `cant_sillas`, `fecha_disponible`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pedidos`
+-- Estructura de tabla para la tabla `pedidos`
 --
 
 CREATE TABLE `pedidos` (
-  `id_usuario` int(11) NOT NULL,
   `nro_pedido` int(11) NOT NULL,
-  `fecha_pedido` date DEFAULT NULL,
+  `id_estado` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `fecha_pedido` varchar(20) DEFAULT NULL,
   `hora_pedido` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `pedidos`
+--
+
+INSERT INTO `pedidos` (`nro_pedido`, `id_estado`, `id_usuario`, `fecha_pedido`, `hora_pedido`) VALUES
+(0, 5, 0, '2022-11-22', '8:00'),
+(1000, 5, 0, '2022-11-22', '8:00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `productos`
+-- Estructura de tabla para la tabla `productos`
 --
 
 CREATE TABLE `productos` (
@@ -73,7 +173,7 @@ CREATE TABLE `productos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `productos`
+-- Volcado de datos para la tabla `productos`
 --
 
 INSERT INTO `productos` (`ID`, `NOMBRE`, `CATEGORIA`, `DESCRIPCION_PRODUCTO`, `PRECIO_VTA`, `STOCK`, `FOTO`) VALUES
@@ -89,7 +189,7 @@ INSERT INTO `productos` (`ID`, `NOMBRE`, `CATEGORIA`, `DESCRIPCION_PRODUCTO`, `P
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reserva`
+-- Estructura de tabla para la tabla `reserva`
 --
 
 CREATE TABLE `reserva` (
@@ -99,56 +199,50 @@ CREATE TABLE `reserva` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `reserva`
+-- Volcado de datos para la tabla `reserva`
 --
 
 INSERT INTO `reserva` (`nro_reserva`, `fecha_reserva`, `estado`) VALUES
 (1, '2022-10-16', 'ocupado');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `mesa`
+-- Indices de la tabla `mesa`
 --
 ALTER TABLE `mesa`
   ADD PRIMARY KEY (`nro_mesa`);
 
 --
--- Indexes for table `pedidos`
---
-ALTER TABLE `pedidos`
-  ADD PRIMARY KEY (`nro_pedido`);
-
---
--- Indexes for table `productos`
+-- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `reserva`
+-- Indices de la tabla `reserva`
 --
 ALTER TABLE `reserva`
   ADD PRIMARY KEY (`nro_reserva`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `reserva`
+-- AUTO_INCREMENT de la tabla `reserva`
 --
 ALTER TABLE `reserva`
   MODIFY `nro_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `reserva`
+-- Filtros para la tabla `reserva`
 --
 ALTER TABLE `reserva`
   ADD CONSTRAINT `reserva_ibfk_1` FOREIGN KEY (`nro_reserva`) REFERENCES `mesa` (`nro_mesa`);

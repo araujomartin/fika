@@ -11,5 +11,7 @@ import lombok.Data;
  */
 @Data
 public class DetallePedido {
-    private int cantidad;
+    private int nro_pedido;
+    private int id_producto;
+    private int cantidad_producto;
 }

@@ -5,10 +5,15 @@
 package MVC.Controllers;
 
 import MVC.DAO.CarritoDAO;
+import MVC.DAO.DetallePedidoDAO;
 import MVC.DAO.ItemCarritoDAO;
 import MVC.Models.Pedido;
 import MVC.DAO.PedidoDAO;
 import MVC.Models.Carrito;
+import MVC.Models.Detalle;
+import MVC.Models.DetallePedido;
+import MVC.Models.ItemCarrito;
+import MVC.Models.Producto;
 import Velocity.VelocityTemplateEngine;
 import java.util.HashMap;
 import java.util.List;
@@ -28,6 +33,7 @@ public class PedidoControlador {
         PedidoDAO bd = new  PedidoDAO();
         CarritoDAO carrito_bd = new CarritoDAO();
         ItemCarritoDAO item_bd = new ItemCarritoDAO();
+        DetallePedidoDAO detalle_bd = new DetallePedidoDAO();
         int user_id = Integer.parseInt(request.queryParams("user_id"));
         int pago_id = Integer.parseInt(request.queryParams("pago_id"));
         String fecha = request.queryParams("fecha");
@@ -39,18 +45,25 @@ public class PedidoControlador {
         p.setId_estado(estado_id);
         p.setHora_pedido(hora);
         p.setFecha_pedido(fecha);
-        p.setNro_pedido(1000); //Implementar un index para el numero de los pedidos
-        
+        p.setNro_pedido(1000); // Implementar un autoincrementador
         bd.cargarPedido(p);
         Carrito carrito_usuario = carrito_bd.getCarritoByUserId(user_id).get(0);
+        
+        List<ItemCarrito> items = item_bd.obtenerItemsByCarritoId(carrito_usuario.getId_carrito());
+        
+        for (ItemCarrito item: items) {
+            DetallePedido detalle = new DetallePedido();
+            
+            detalle.setId_producto(item.getId_producto());
+            detalle.setNro_pedido(1000);
+            detalle.setCantidad_producto(item.getCantidad());
+            
+            detalle_bd.cargarDetalle(detalle);
+        }
         // Limpia el carrito del usuario
         item_bd.clearItemCarrito(carrito_usuario.getId_carrito());
         
-        
-        
-        
-        
-        
+
         HashMap model = new HashMap();
         //model.put("template", "templates/productos.vsl");   .vsl donde se va a mostrar si es que lo mostramos
        // model.put("pedidos", pedi);
